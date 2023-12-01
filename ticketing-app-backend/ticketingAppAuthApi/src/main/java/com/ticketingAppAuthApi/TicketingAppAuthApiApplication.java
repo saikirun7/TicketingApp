@@ -1,3 +1,11 @@
+/*******************************************************
+Developer Credits:
+Author: Sai Kiran Rayudu
+Created on: Decemebr 1st 2023
+Organization: Sai Kiran Rayudu Enterprise
+
+********************************************************/
+
 package com.ticketingAppAuthApi;
 
 import org.springframework.boot.SpringApplication;
