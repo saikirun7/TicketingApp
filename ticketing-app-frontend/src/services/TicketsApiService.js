@@ -1,9 +1,8 @@
-// TicketsApiService.js
 import axios from 'axios';
 import { getToken } from './authenticationApi'
 
 class TicketsApiService {
-  baseUrl = 'http://localhost:9090/api/';
+  baseUrl = 'http://localhost:8088/api/';
 
   getTickets() {
     const finalUrl = `${this.baseUrl}ticketsdata`;

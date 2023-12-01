@@ -1,8 +1,6 @@
-// ListTickets.jsx
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Typography } from '@mui/material';
-import TicketsApiService from '../../../services/TicketsApiService'; // Update with the correct path
+import TicketsApiService from '../../../services/TicketsApiService';
 
 function ListTickets() {
   const [isLoading, setIsLoading] = useState(true);
@@ -47,9 +45,10 @@ function ListTickets() {
             </thead>
             <tbody>
               {Array.isArray(userTickets) && userTickets.length > 0 ? (
-                userTickets.map((ticket) => (
+                userTickets.map((ticket, index) => (
                   <tr key={ticket.id}>
-                    <td>{ticket.id}</td>
+                    <td>{index + 1}</td>
+                    {/* <td>{ticket.id}</td> */}
                     <td>{ticket.product}</td>
                     <td>{ticket.issue}</td>
                     <td></td>
