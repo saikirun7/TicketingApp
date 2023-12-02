@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
-import { Button, TextField, Typography } from '@mui/material';
+import { Button, TextField, Typography, Snackbar, Alert } from '@mui/material';
 import TicketsApiService from '../../../services/TicketsApiService';
 import { useNavigate } from 'react-router-dom';
 
 function AddTicket() {
   const [error, setError] = useState(null);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+  const [snackbarMessage, setSnackbarMessage] = useState('');
   const navigate = useNavigate();
 
   const ticketApiService = new TicketsApiService();
@@ -17,19 +20,31 @@ function AddTicket() {
     },
     onSubmit: async (values) => {
       try {
-        // Make a POST request using TicketsApiService
         const response = await ticketApiService.addTicket(values);
 
-        // Handle the response as needed
-        alert(JSON.stringify(response.data));
-        navigate("/dashboard/listTickets")
-        // You might want to redirect or do something else here
+        if (response.status === 201) {
+          setSnackbarSeverity('success');
+          setSnackbarMessage(`Ticket Added: ${response.data.message}`);
+          setOpenSnackbar(true);
+
+          setTimeout(() => {
+            navigate('/dashboard/listTickets');
+          }, 1000);
+        } else {
+          setSnackbarSeverity('error');
+          setSnackbarMessage(`Failed to add the ticket. Server returned: ${response.status} ${response.statusText}`);
+          setOpenSnackbar(true);
+        }
       } catch (err) {
-        // Handle errors
         setError('Failed to add the ticket. Please try again later.');
+        setOpenSnackbar(true);
       }
     },
   });
+
+  const closeSnackbar = () => {
+    setOpenSnackbar(false);
+  };
 
   return (
     <div>
@@ -70,6 +85,17 @@ function AddTicket() {
         {error && <Typography color="error">{error}</Typography>}
         <Button type="submit">Add Ticket</Button>
       </form>
+
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={6000}
+        onClose={closeSnackbar}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert onClose={closeSnackbar} severity={snackbarSeverity} sx={{ width: '100%' }}>
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

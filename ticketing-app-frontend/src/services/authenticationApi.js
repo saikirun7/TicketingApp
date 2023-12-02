@@ -14,7 +14,7 @@ const login = async (credentials) => {
         const response = await authenticationApi.post('/login', credentials);
         return response.data;
     } catch (error) {
-        // You can handle errors here
+        console.error("Error during login:", error.message);
         throw error;
     }
 };
@@ -24,7 +24,7 @@ const register = async (userData) => {
         const response = await authenticationApi.post('/register', userData);
         return response.data;
     } catch (error) {
-        // You can handle errors here
+        console.error("Error during registration:", error.message);
         throw error;
     }
 };
@@ -53,16 +53,16 @@ export function removeRole() {
     localStorage.removeItem('userRole');
 }
 
-export function setId(id) {
-    localStorage.setItem('userId', id);
+export function setName(name) {
+    localStorage.setItem('userName', name);
 }
 
-export function getId() {
-    return localStorage.getItem('userId');
+export function getName() {
+    return localStorage.getItem('userName');
 }
 
-export function removeId() {
-    localStorage.removeItem('userId');
+export function removeName() {
+    localStorage.removeItem('userName');
 }
 
 export function tokenExpired(token) {

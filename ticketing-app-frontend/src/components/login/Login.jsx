@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { Button, TextField, Snackbar } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import { useNavigate } from 'react-router-dom';
-import { login, setToken, setRole, setId } from '../../services/authenticationApi';
+import { login, setToken, setRole, setName } from '../../services/authenticationApi';
 import './Login.css';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -39,11 +39,12 @@ const Login = () => {
     async (values) => {
       try {
         const response = await login(values);
+        console.log(response)
 
         if (!response.error) {
           setToken(response.token);
           setRole(response.role);
-          setId(response.userId);
+          setName(response.name);
 
           setSnackbarSeverity('success');
           setSnackbarMessage( response.message + ', Redirecting to dashboard...');
@@ -51,7 +52,7 @@ const Login = () => {
 
           setTimeout(() => {
             navigate('/dashboard');
-          }, 3000);
+          }, 1000);
         } else {
           console.error('Login failed. Response:', response);
           setSnackbarSeverity('error');

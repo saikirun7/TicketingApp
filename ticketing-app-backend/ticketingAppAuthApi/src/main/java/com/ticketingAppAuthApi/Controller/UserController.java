@@ -65,7 +65,8 @@ public class UserController {
 
 	            map.put("message", "User Successfully LoggedIn");
 	            map.put("token", jwtToken);
-	            map.put("role", userDetails.getRole()); // Include user role in the response
+	            map.put("role", userDetails.getRole());
+	            map.put("name", userDetails.getName());
 	            return new ResponseEntity<>(map, HttpStatus.OK);
 	        } else {
 	            throw new Exception("User not found in the database");

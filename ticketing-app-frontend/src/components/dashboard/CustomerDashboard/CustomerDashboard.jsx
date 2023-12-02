@@ -3,6 +3,9 @@ import { Box, Button, Typography } from '@mui/material';
 import { Link, Outlet } from 'react-router-dom';
 
 function CustomerDashboard() {
+
+  const name = localStorage.getItem('userName');
+
   return (
     <div>
       <Box className="panelStyle">
@@ -10,7 +13,7 @@ function CustomerDashboard() {
           <center>Customer Dashboard</center>
         </Typography>
         <Typography variant="h6">
-          <center>Welcome,</center>
+          <center>Welcome, {name}</center>
         </Typography>
         <Link to="listTickets">
           <Button variant="contained" color="primary">

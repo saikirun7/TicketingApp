@@ -22,9 +22,9 @@ import com.ticketingAppUserTicketsApi.Filter.JWTFilter;
 @SpringBootApplication
 
 public class TicketingAppUserTicketsApiApplication {
-	
-	@Bean
-	public FilterRegistrationBean<JWTFilter> jwtFilter() {
+
+    @Bean
+    FilterRegistrationBean<JWTFilter> jwtFilter() {
 		FilterRegistrationBean<JWTFilter> filterBean = new FilterRegistrationBean<JWTFilter>();
 		filterBean.setFilter(new JWTFilter());
 		filterBean.addUrlPatterns("/api/*");

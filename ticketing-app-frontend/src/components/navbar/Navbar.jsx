@@ -1,13 +1,14 @@
-import React from 'react';
-import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { AppBar, Box, Button, Snackbar, Toolbar, Typography } from '@mui/material';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { removeToken, removeRole, removeId } from '../../services/authenticationApi';
+import { removeToken, removeRole, removeName } from '../../services/authenticationApi';
 
 function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  //const isAuthenticated = localStorage.getItem('user') !== null;
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
 
   const dashboard = () => {
     navigate('/dashboard');
@@ -15,14 +16,19 @@ function Navbar() {
 
   const logout = () => {
     removeToken('jwtToken');
-    removeRole('userRole')
-    removeId('userId');
+    removeRole('userRole');
+    removeName('userName');
+    setSnackbarMessage('User logged out successfully.');
+    setOpenSnackbar(true);
     navigate('/login');
   };
 
+  const closeSnackbar = () => {
+    setOpenSnackbar(false);
+  };
+
   const renderLoginButton = () => {
-    if (location.pathname === '/register') 
-    {
+    if (location.pathname === '/register') {
       return (
         <Link to="/login">
           <Button type="button" className="login-button">
@@ -46,7 +52,6 @@ function Navbar() {
     }
     return null;
   };
-
 
   const renderDashboardButton = () => {
     if (location.pathname !== '/login' && location.pathname !== '/register') {
@@ -87,6 +92,13 @@ function Navbar() {
           </div>
         </Toolbar>
       </AppBar>
+
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={6000}
+        onClose={closeSnackbar}
+        message={snackbarMessage}
+      />
     </Box>
   );
 }
