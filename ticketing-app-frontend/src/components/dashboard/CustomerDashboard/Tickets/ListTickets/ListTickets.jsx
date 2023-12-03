@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Typography } from '@mui/material';
-import TicketsApiService from '../../../services/TicketsApiService';
+import TicketsApiService from '../../../../../services/TicketsApiService';
+import './ListTickets.css'
 
 function ListTickets() {
   const [isLoading, setIsLoading] = useState(true);
@@ -13,7 +14,7 @@ function ListTickets() {
 
       try {
         const response = await ticketsApiService.getTickets();
-        const data = response.data.tickets; // Access the tickets array
+        const data = response.data.tickets;
         console.log('Data:', data);
         setUserTickets(data);
       } catch (error) {

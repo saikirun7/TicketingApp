@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { Button, TextField, CircularProgress, Snackbar } from '@mui/material';
 import './Register.css';
-import { register } from '../../services/authenticationApi';
+import { register } from '../../services/AuthenticationApi';
 import MuiAlert from '@mui/material/Alert';
 
 const Alert = React.forwardRef(function Alert(props, ref) {

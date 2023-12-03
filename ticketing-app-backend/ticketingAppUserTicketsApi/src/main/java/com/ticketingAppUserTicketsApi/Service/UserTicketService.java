@@ -11,5 +11,5 @@ public interface UserTicketService {
 	public UserTicket addUserToUserTicket(String email);
 	public List<Ticket> getAllTicketsOfUser(String email);
 	public boolean addTicketOfUser(String email, Ticket ticket);
-
+	public List<UserTicket> getAllUserTickets();
 }

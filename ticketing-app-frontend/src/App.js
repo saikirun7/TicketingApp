@@ -3,8 +3,8 @@ import Navbar from './components/navbar/Navbar';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
 import Dashboard from './components/dashboard/Dashboard';
-import ListTickets from './components/tickets/ListTickets/ListTickets';
-import AddTicket from './components/tickets/AddTicket/AddTicket';
+import ListTickets from './components/dashboard/CustomerDashboard/Tickets/ListTickets/ListTickets';
+import AddTicket from './components/dashboard/CustomerDashboard/Tickets/AddTicket/AddTicket';
 import PrivateRoute from './RoutingGuards/PrivateRoute'
 
 function App() {

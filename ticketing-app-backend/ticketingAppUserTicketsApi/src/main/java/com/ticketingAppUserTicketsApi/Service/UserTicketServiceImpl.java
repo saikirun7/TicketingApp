@@ -57,5 +57,10 @@ public class UserTicketServiceImpl implements UserTicketService {
         userTicketRepository.save(userTicket);
         return true; // Ticket was added
     }
+    
+    
+    public List<UserTicket> getAllUserTickets() {
+        return userTicketRepository.findAll();
+    }
 
 }

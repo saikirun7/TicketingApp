@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const baseURL = 'http://localhost:8087/auth/user';
 
-const authenticationApi = axios.create({
+const AuthenticationApi = axios.create({
     baseURL,
     headers: {
         'Content-Type': 'application/json',
@@ -11,7 +11,7 @@ const authenticationApi = axios.create({
 
 const login = async (credentials) => {
     try {
-        const response = await authenticationApi.post('/login', credentials);
+        const response = await AuthenticationApi.post('/login', credentials);
         return response.data;
     } catch (error) {
         console.error("Error during login:", error.message);
@@ -21,7 +21,7 @@ const login = async (credentials) => {
 
 const register = async (userData) => {
     try {
-        const response = await authenticationApi.post('/register', userData);
+        const response = await AuthenticationApi.post('/register', userData);
         return response.data;
     } catch (error) {
         console.error("Error during registration:", error.message);

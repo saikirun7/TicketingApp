@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AppBar, Box, Button, Snackbar, Toolbar, Typography } from '@mui/material';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { removeToken, removeRole, removeName } from '../../services/authenticationApi';
+import { removeToken, removeRole, removeName } from '../../services/AuthenticationApi';
 
 function Navbar() {
   const location = useLocation();

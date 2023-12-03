@@ -10,7 +10,8 @@ function Dashboard() {
 
   return (
     <div>
-        <h1>Dashboard of {role}</h1>
+      <br />
+        {/* <h1>Dashboard of {role}</h1> */}
         {
             role==='manager' && <ManagerDashboard></ManagerDashboard>
         }

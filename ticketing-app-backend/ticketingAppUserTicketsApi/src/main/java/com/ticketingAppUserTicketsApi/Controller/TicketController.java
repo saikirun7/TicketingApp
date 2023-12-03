@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ticketingAppUserTicketsApi.Model.Ticket;
+import com.ticketingAppUserTicketsApi.Model.UserTicket;
 import com.ticketingAppUserTicketsApi.Service.UserTicketService;
 
 import io.jsonwebtoken.Claims;
@@ -51,6 +52,20 @@ public class TicketController {
             response.put("message", "No Bookmarked Tickets to display");
         } else {
             response.put("tickets", allTickets);
+        }
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    
+    @GetMapping("/allticketsdata")
+    public ResponseEntity<Map<String, Object>> getAllUserTickets() {
+        List<UserTicket> allUserTickets = userTicketService.getAllUserTickets();
+        Map<String, Object> response = new HashMap<>();
+
+        if (allUserTickets.isEmpty()) {
+            response.put("message", "No User Tickets to display");
+        } else {
+            response.put("userTickets", allUserTickets);
         }
 
         return new ResponseEntity<>(response, HttpStatus.OK);
